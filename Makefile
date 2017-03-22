@@ -7,7 +7,7 @@ OPTFLAG= -O3
 CFLAGS = $(OPTFLAG)  $(INCDIR)
 COMPILE = $(CC) $(CFLAGS) -c
 
-OBJS= tuple.o
+OBJS= tuple.o state.o engine.o
 
 SUB=$(OBJS:%.o=obj/%.o)
 
