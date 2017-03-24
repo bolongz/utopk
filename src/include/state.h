@@ -14,14 +14,14 @@ class State{
         typedef int Sta; // state element status 
         typedef std::vector<Sta> Current;
         typedef double Prob;
-        typedef int Length;
-//        typedef int Last;
+        typedef size_t Length;
+        typedef size_t End;
     private:
         Current _current; // store the current state if the element is negative means cannot show
         Current _negative; // means the element must not in the mbstate_tus
         Prob _prob; // probability 
         Length _length; //state length;
-//        Last _last;// Last seen tuple;
+        End _end;// Last seen tuple;
     
     public:
         
@@ -32,7 +32,7 @@ class State{
         /* Access elements */ 
         Prob prob() const{return _prob;}
         Length length() const {return _length;}
-//        Last last() const {return _last;}
+        End end() const {return _end;}
         Current current() const {return _current;}
         Current negative() const {return _negative;}
 
