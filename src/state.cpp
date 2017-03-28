@@ -4,7 +4,7 @@
 #include "state.h"
 #include <cassert>
 
-State::State():_current{{0}}, _prob{1.0}, _length{0}, _end{1000000}{}
+State::State(): _prob{1.0}, _length{0}, _end{1000000}{}
 
 State::State(const State::Current &cu, const State::Prob &_p, const State::Length &_l){
     _current = cu;
