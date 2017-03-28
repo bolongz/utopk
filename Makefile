@@ -17,7 +17,7 @@ $(EXE): $(SUB)
 	$(CC) $(CFLAGS) -o  $(EXE) $(SUB)
 
 obj/%.o: src/%.cpp src/include/%.h
-	@$(COMPILE) -o  $@  $< $(MYINCLDIR)
+	$(COMPILE) -o  $@  $< $(MYINCLDIR)
 
 clean:
 	\rm -f ./obj/*.o  topk
