@@ -4,8 +4,66 @@
 #include "utopk.h"
 
 /*constructor */
-Utopk::Utopk():deep{0}, length{0}{}
+Utopk::Utopk():deep{0}, length{0},last(-1){}
 
+Utopk::Utopk(const Utopk &t){
+
+   state = t.get_state();
+   deep = t.get_deep();
+   length = t.get_length();
+   last = t.get_last();
+   seen_tuples = t.get_seen();
+
+}
+
+Utopk::Utopk(Utopk &&t){
+
+   state = t.get_state();
+   deep = t.get_deep();
+   length = t.get_length();
+   last = t.get_last();
+   seen_tuples = t.get_seen();
+   t.~Utopk();
+
+}   
+
+const Utopk &Utopk::operator=(const Utopk &t){
+   
+   if(this == &t){
+   
+        return *this;
+   }
+   state = t.get_state();
+   deep = t.get_deep();
+   length = t.get_length();
+   last = t.get_last();
+   seen_tuples = t.get_seen();
+
+   return *this;
+}   
+
+Utopk &Utopk::operator=(Utopk &&t){
+   
+   if(this == &t){
+   
+        return *this;
+   }
+   state = t.get_state();
+   deep = t.get_deep();
+   length = t.get_length();
+   last = t.get_last();
+   seen_tuples = t.get_seen();
+   t.~Utopk();
+   return *this;
+}   
+
+Utopk::~Utopk(){
+    Seen().swap(seen_tuples);
+    deep = 0;
+    length = 0;
+    last = -1;
+    
+}
 /* Processing topk */
 State Utopk::topk(const Engine::Rules &R, const Engine::Source &source, const Utopk::Querylength &k) {
    

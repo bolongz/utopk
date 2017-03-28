@@ -12,6 +12,54 @@ bool state_compare(const State &s1, const State &s2){
 
 Indenputopk::Indenputopk(){}
 
+Indenputopk::Indenputopk(const Indenputopk &t){
+    
+    maintained = t.get_maintained();
+    answer = t.get_answer();
+
+}
+
+Indenputopk::Indenputopk(Indenputopk &&t){
+    
+    maintained = t.get_maintained();
+    answer = t.get_answer();
+
+    t.~Indenputopk();
+
+}
+
+const Indenputopk &Indenputopk::operator=(const Indenputopk &t){
+    
+    if(this == &t){
+        
+        return *this;
+    }
+    maintained = t.get_maintained();
+    answer = t.get_answer();
+    
+    return *this;
+}   
+
+Indenputopk &Indenputopk::operator=(Indenputopk &&t){
+    
+    if(this == &t){
+    
+        return *this;
+    }
+    maintained = t.get_maintained();
+    answer = t.get_answer();
+
+    t.~Indenputopk();
+    
+    return *this;
+}
+
+Indenputopk::~Indenputopk(){
+
+    Maintained().swap(maintained);
+    answer.~State();
+}
+
 State Indenputopk::indenputopk(const Engine::Source &source, const Indenputopk::Querylength k){
 
     maintained.resize(k);

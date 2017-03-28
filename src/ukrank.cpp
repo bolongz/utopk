@@ -5,6 +5,78 @@
 
 Ukrank::Ukrank():depth{1}, reported{0}{}
 
+Ukrank::Ukrank(const Ukrank &t){
+
+    answer = t.get_answer();
+    ubounds = t.get_ubounds();
+    ap = t.get_ap();
+    rflag = t.get_flag();
+    depth =t.get_depth();
+    space = t.get_space();
+    reported = t.get_reported();
+
+}
+
+Ukrank::Ukrank(Ukrank &&t){
+
+    answer = t.get_answer();
+    ubounds = t.get_ubounds();
+    ap = t.get_ap();
+    rflag = t.get_flag();
+    depth =t.get_depth();
+    space = t.get_space();
+    reported = t.get_reported();
+
+    t.~Ukrank();
+}
+
+const Ukrank &Ukrank::operator=(const Ukrank &t){
+
+    if(this == &t){
+        
+        return *this;
+   
+    }
+
+    answer = t.get_answer();
+    ubounds = t.get_ubounds();
+    ap = t.get_ap();
+    rflag = t.get_flag();
+    depth =t.get_depth();
+    space = t.get_space();
+    reported = t.get_reported();
+
+    return *this;
+}
+
+Ukrank &Ukrank::operator=(Ukrank &&t){
+
+    if(this == &t){
+        return *this;
+   
+    }
+
+    answer = t.get_answer();
+    ubounds = t.get_ubounds();
+    ap = t.get_ap();
+    rflag = t.get_flag();
+    depth =t.get_depth();
+    space = t.get_space();
+    reported = t.get_reported();
+    t.~Ukrank();
+    return *this;
+}
+
+Ukrank::~Ukrank(){
+
+    Answer().swap(answer);
+    Ubounds().swap(ubounds);
+    AnswerProbability().swap(ap);
+    Flag().swap(rflag);
+    Space().swap(space);
+    depth = 1;
+    reported = 0;
+}
 Ukrank::Answer Ukrank::ukrank(const Engine::Rules &R, const Engine::Source &source, const Ukrank::Querylength &k){
 
     answer.resize(k, 0);
@@ -13,7 +85,7 @@ Ukrank::Answer Ukrank::ukrank(const Engine::Rules &R, const Engine::Source &sour
     rflag.resize(k, false);
 
     Engine engine(R, source);
-    while((depth <= source.size()) & reported < k){
+    while((depth <= source.size()) & (reported < k)){
         
         size_t t = depth -1; //next tuples from source
         size_t _min = std::min(k, depth);

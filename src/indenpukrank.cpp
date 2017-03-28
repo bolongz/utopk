@@ -5,6 +5,54 @@
 
 Indenpukrank::Indenpukrank(){}
 
+Indenpukrank::Indenpukrank(const Indenpukrank &t){
+
+    results = t.get_results();
+    M = t.get_matrix();
+}
+
+Indenpukrank::Indenpukrank(Indenpukrank &&t){
+
+    results = t.get_results();
+    M = t.get_matrix();
+    t.~Indenpukrank();
+}
+
+const Indenpukrank &Indenpukrank::operator=(const Indenpukrank &t){
+
+    if(this == &t){
+    
+        return *this;
+    }
+
+    results = t.get_results();
+    M = t.get_matrix();
+    
+    return *this;
+}
+
+Indenpukrank &Indenpukrank::operator=(Indenpukrank &&t){
+
+    if(this == &t){
+    
+        return *this;
+    }
+
+    results = t.get_results();
+    M = t.get_matrix();
+    t.~Indenpukrank();
+    
+    return *this;
+}
+
+Indenpukrank::~Indenpukrank(){
+
+    Results().swap(results);
+    Dynamic().swap(M);
+
+}
+
+
 Indenpukrank::Results Indenpukrank::indenpukrank(const Engine::Source &source, size_t k){
 
     size_t _size = source.size();

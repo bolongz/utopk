@@ -27,7 +27,12 @@ class State{
         
         /* constructor */
         State();
-        State(const Current &cu, const Prob &_p, const Length &_l);
+        State(const State &cu);
+        State(State &&cu);
+        const State &operator=(const State &state);
+        State &operator=(State &&state);
+
+        ~State();
         
         /* Access elements */ 
         Prob prob() const{return _prob;}

@@ -26,7 +26,16 @@ class Indenpukrank{
     public:
 
         Indenpukrank();
+        Indenpukrank(const Indenpukrank &t);
+        Indenpukrank(Indenpukrank &&t);
+        const Indenpukrank &operator=(const Indenpukrank &t);
+        Indenpukrank &operator=(Indenpukrank &&t);
 
+        ~Indenpukrank();
+
+        Results get_results() const { return results;}
+        Dynamic get_matrix() const {return M;}
+        
         Results indenpukrank(const Engine::Source &source, size_t k);
         
 };

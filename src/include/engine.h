@@ -25,9 +25,20 @@ class Engine{
     
     public:
 
-        /* Constructor */
+        /* Constructors */
         Engine();
+        Engine(const Engine &e);
+        Engine(Engine &&e);
+        const Engine &operator=(const Engine &e);
+        Engine &operator=(Engine &&e);
         Engine(const Rules &R, const Source &S);
+       
+        ~Engine();
+        Source source() const { return _source;}
+        Binary rules()const {return _rules;}
+        Union unio()const {return _union;}
+        Size size()const {return _size;}
+        
         /* Calculating the state probability */ 
         Prob computing_state_probability(const State &s);
 

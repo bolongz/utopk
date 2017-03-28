@@ -3,8 +3,52 @@
 
 #include "engine.h"
 
-Engine::Engine(){}; //empty constructor
+Engine::Engine():_size(-1){}; //empty constructor
 
+Engine::Engine(const Engine &e){
+    
+    _source = e.source();
+    _rules = e.rules();
+    _union = e.unio();
+    _size = e.size();
+}
+
+Engine::Engine(Engine &&e){
+    _source = e.source();
+    _rules = e.rules();
+    _union = e.unio();
+    _size = e.size();
+    e.~Engine();
+}
+const Engine &Engine::operator=(const Engine &e){
+    if(this == &e){
+    
+        return *this;
+    
+    }    
+    _source = e.source();
+    _rules = e.rules();
+    _union = e.unio();
+    _size = e.size();
+    
+    return *this;
+}
+
+Engine &Engine::operator=(Engine &&e){
+    
+    if(this == &e){
+    
+        return *this;
+    }
+    _source = e.source();
+    _rules = e.rules();
+    _union = e.unio();
+    _size = e.size();
+    e.~Engine();
+
+    return *this; 
+
+}
 Engine::Engine(const Engine::Rules & R, const Engine::Source &S){
     
     _source = S;
@@ -25,6 +69,14 @@ Engine::Engine(const Engine::Rules & R, const Engine::Source &S){
 
 }
 
+Engine::~Engine(){
+    
+    Source().swap(_source);
+    Binary().swap(_rules);
+    Union().swap(_union);
+    _size = -1;
+
+}
 Engine::Prob Engine::computing_state_probability(const State &s){
     
     int current = 0;;

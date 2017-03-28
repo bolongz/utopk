@@ -6,15 +6,79 @@
 
 State::State(): _prob{1.0}, _length{0}, _end{1000000}{}
 
-State::State(const State::Current &cu, const State::Prob &_p, const State::Length &_l){
-    _current = cu;
-    _prob = _p;
-    _length = _l;
+State::State(const State &cu){
+
+    _current = cu.current();
+    _negative = cu.negative();
+    _prob = cu.prob();
+    _length = cu.length();
+    _end = cu.end();
 }
+
+State::State(State &&cu){
+    
+    _current = cu.current();
+    _negative = cu.negative();
+    _prob = cu.prob();
+    _length = cu.length();
+    _end = cu.end();
+
+    cu.~State();
+
+}
+
+const State &State::operator=(const State &state){
+
+   if(this == &state){
+    
+       return *this;
+   }
+    
+   _current = state.current();
+    _negative =state.negative();
+    _prob = state.prob();
+    _length = state.length();
+    _end =state.end();
+
+    return *this;
+}
+
+State &State::operator=(State &&state){
+
+    if(this == &state){
+        return *this;
+    
+    }
+   
+    _current = state.current();
+    _negative = state.negative();
+    _prob = state.prob();
+    _length =state.length();
+    _end = state.end();
+
+    state.~State();
+    
+    return *this;
+}
+//State::State(const State::Current &cu, const State::Prob &_p, const State::Length &_l){
+//    _current = cu;
+//    _prob = _p;
+//    _length = _l;
+//}
 
 //void State::extend(const Length &e, const Last &l){
     //keep length extension }
 //void extend_length(const Sta &s, const Length &e, const Last &l); // extension length
+
+State::~State(){
+    
+    Current().swap(_current);
+    Current().swap(_negative);
+    _prob = 1.0;
+    _length = 0.0;
+    _end = 1000000;
+
+}
 
 void State::extend(const State::Sta &s, const bool &positive){ // extension length
     

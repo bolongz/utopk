@@ -24,7 +24,16 @@ class Indenputopk{
     public:
         
         Indenputopk();
-    
+        Indenputopk(const Indenputopk &t);
+        Indenputopk(Indenputopk &&t);
+        const Indenputopk & operator=(const Indenputopk &t);
+        Indenputopk &operator=(Indenputopk &&t);
+        
+        ~Indenputopk();
+
+        Maintained get_maintained() const {return maintained;}
+        Answer get_answer() const {return answer;}
+
         State indenputopk(const Engine::Source &source, const Querylength k);
 
 };
