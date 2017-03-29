@@ -46,6 +46,13 @@ class State{
         //void extend_length(const Sta &s, const Length &e, const Last &l); // extension length
         
         void update_probability(const Prob & newp);
+
+        void print_state(){
+        
+            for(size_t i=0; i < _current.size(); i++){
+                std::cout <<_current[0] <<" " << _current[1]<<std::endl;
+            }
+        }
 };
 
 

@@ -7,7 +7,8 @@ OPTFLAG= -O3
 CFLAGS = $(OPTFLAG)  $(INCDIR)
 COMPILE = $(CC) $(CFLAGS) -c
 
-OBJS= indenpukrank.o indenputopk.o tuple.o state.o engine.o utopk.o ukrank.o
+OBJS= indenpukrank.o indenputopk.o tuple.o \
+	  state.o engine.o utopk.o ukrank.o test.o
 
 SUB=$(OBJS:%.o=obj/%.o)
 
@@ -16,7 +17,7 @@ ALL: $(EXE)
 $(EXE): $(SUB)
 	$(CC) $(CFLAGS) -o  $(EXE) $(SUB)
 
-obj/%.o: src/%.cpp src/include/%.h
+obj/%.o: src/%.cpp
 	$(COMPILE) -o  $@  $< $(MYINCLDIR)
 
 clean:
