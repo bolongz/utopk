@@ -1,3 +1,6 @@
+/*Author: Bolong Zhang */
+/*Email: blzhang.m@gmail.com */
+
 #ifndef _ENGINE_H_
 #define _ENGINE_H_
 
@@ -34,6 +37,9 @@ class Engine{
         Engine(const Rules &R, const Source &S);
        
         ~Engine();
+        
+        void start(const Rules &R, const Source &S);
+
         Source source() const { return _source;}
         Binary rules()const {return _rules;}
         Union unio()const {return _union;}

@@ -6,7 +6,7 @@
 
 
 /* Implementation of the Tuple class */
-Tuple::Tuple():_id{-1},_tag{-1},_score{-1},_confidence{-1}{}
+Tuple::Tuple():_tag{-1},_score{-1},_confidence{-1}{}
 
 Tuple::Tuple(const Tuple &tuple){
     _id = tuple.id();
@@ -21,7 +21,7 @@ Tuple::Tuple(Tuple &&tuple){
     _score = tuple.score();
     _confidence = tuple.confidence();
 
-    tuple.modify_id(-1);
+//    tuple.modify_id(-1);
     tuple.modify_score(-1);
     tuple.modify_tag(-1);
     tuple.modify_confidence(-1);
@@ -34,7 +34,7 @@ const Tuple &Tuple::operator=(const Tuple &tuple){
         return *this; 
     }
     
-    _id = tuple.id();
+ //   _id = tuple.id();
     _tag = tuple.tag();
     _score = tuple.score();
     _confidence = tuple.confidence();
@@ -53,7 +53,7 @@ Tuple &Tuple::operator=(Tuple &&tuple){
     _score = tuple.score();
     _confidence = tuple.confidence();
     
-    tuple.modify_id(-1);
+//  tuple.modify_id(-1);
     tuple.modify_score(-1);
     tuple.modify_tag(-1);
     tuple.modify_confidence(-1);

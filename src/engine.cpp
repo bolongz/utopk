@@ -54,7 +54,7 @@ Engine::Engine(const Engine::Rules & R, const Engine::Source &S){
     
     _source = S;
     _size = S.size();
-    std::cout << _size << std::endl;
+//    std::cout << _size << std::endl;
     /* get union for all the rules */
     Iterator it;
     for(size_t i = 0; i  < R.size() ; i++){
@@ -75,6 +75,24 @@ Engine::~Engine(){
     Union().swap(_union);
     _size = -1;
 
+}
+
+void Engine::start(const Engine::Rules & R, const Engine::Source &S){
+    
+    _source = S;
+    _size = S.size();
+//    std::cout << _size << std::endl;
+    /* get union for all the rules */
+    Iterator it;
+    for(size_t i = 0; i  < R.size() ; i++){
+        int s = 0; //empty set at first 
+        for(it = R[i].begin(); it != R[i].end(); ++it){
+            _union.insert(*it);
+            s = s | 1 << (*it);
+        }
+        _rules.push_back(s);
+    }
+    
 }
 Engine::Prob Engine::computing_state_probability(const State &s) const{
    
@@ -201,7 +219,7 @@ Engine::Prob Engine::computing_state_probability(const State &s) const{
         } 
     
     }
-    std::cout << "PROB : " << sum << std::endl;
+ //   std::cout << "PROB : " << sum << std::endl;
     return sum;
 
 }

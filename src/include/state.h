@@ -50,16 +50,33 @@ class State{
         void update_probability(const Prob & newp);
 
         void print_state(){
-            std::cout << "print positive: ";
+            std::cout << "exist tuples: ";
             for(size_t i=0; i < _current.size(); i++){
                 std::cout <<_current[i] <<" ";
             }
-            std::cout << std::endl << "print negative: ";
+            std::cout << std::endl << "absent tuples: ";
             for(size_t i=0; i < _negative.size(); i++){
                 std::cout <<_negative[i] <<" ";
             }
             std::cout <<std::endl;
         }
+        
+        void exist_tuples(){
+            std::cout << "exist tuples: ";
+            for(size_t i=0; i < _current.size(); i++){
+                std::cout <<_current[i] <<" ";
+            }
+            std::cout <<std::endl;
+        }
+        
+        void absent_tuples(){
+            
+            for(size_t i=0; i < _negative.size(); i++){
+                std::cout <<_negative[i] <<" ";
+            }
+            std::cout <<std::endl;
+        }
+        
 };
 
 

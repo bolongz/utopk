@@ -19,7 +19,7 @@
 class Tuple{
     public:
 
-        typedef int TupleID;
+        typedef std::string TupleID;
         typedef int Score;
         typedef double Confidence;
         typedef int Tag; 

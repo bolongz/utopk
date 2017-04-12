@@ -36,6 +36,7 @@ class Indenpukrank{
         Results get_results() const { return results;}
         Dynamic get_matrix() const {return M;}
         
+        //indenpdent krank seeking function 
         Results indenpukrank(const Engine::Source &source, size_t k);
         
 };

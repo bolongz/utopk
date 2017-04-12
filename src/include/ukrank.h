@@ -1,3 +1,7 @@
+/* Author: Bolong Zhang 
+ * email: blzhang.m@gmail.com
+ */
+
 #ifndef _UKRANK_H_
 #define _UKRANK_H_
 
@@ -45,7 +49,7 @@ class Ukrank{
         Space get_space() const {return space;}
         Reported get_reported() const {return reported;}
 
-
+        //ukrank functon return the final krank results 
         Answer ukrank(const Engine &engine, const Engine::Source &source, const Querylength &k);
 };
 

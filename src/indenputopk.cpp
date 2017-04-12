@@ -73,7 +73,7 @@ State Indenputopk::indenputopk(const Engine::Source &source, const Indenputopk::
 
     double maxval = 0.0;
     while(current < source.size()){ 
-        std::cout << "XXXX " << longest << std::endl;       
+//        std::cout << "XXXX " << longest << std::endl;       
         for(size_t i = start; i < longest;i++){
         
             if( i == 0 && maintained[i].size() == 0 && flag[i] == false){
@@ -93,12 +93,12 @@ State Indenputopk::indenputopk(const Engine::Source &source, const Indenputopk::
                 maintained[i].push_back(state2);
                 
                 //maxval = std::max(_newp, _newp2);
-                auto iter = maintained[i].begin();
-                auto iter2 = maintained[i+1].begin();
-                std::cout <<"STATE " << temp << "  "<< iter->prob() << " " << (iter2)->prob() << " " << maxval << std::endl;;
+                //auto iter = maintained[i].begin();
+                //auto iter2 = maintained[i+1].begin();
+  //              std::cout <<"STATE " << temp << "  "<< iter->prob() << " " << (iter2)->prob() << " " << maxval << std::endl;;
                 
             }else{
-                std::cout << "XXXXYYYYYYYY " << i  <<std::endl;  
+//                std::cout << "XXXXYYYYYYYY " << i  <<std::endl;  
                 if(i < k && flag[i] == false){
                     
                     State state1 = *(maintained[i].begin());
@@ -108,8 +108,8 @@ State Indenputopk::indenputopk(const Engine::Source &source, const Indenputopk::
                     maintained[i+1].push_back(state1); 
                     if( i == longest - 1 && longest < k) temp = longest + 1;
                     
-                    std::cout <<"STATE first " << current<< " "  << _newp  << maxval << std::endl;;
-                    state1.print_state();
+ //                   std::cout <<"STATE first " << current<< " "  << _newp  << maxval << std::endl;;
+ //                   state1.print_state();
 
                     //auto iter = maintained[i].begin();
                     //state2.extend(current, false);
@@ -134,8 +134,8 @@ State Indenputopk::indenputopk(const Engine::Source &source, const Indenputopk::
                     
                     } 
                     
-                    std::cout <<"STATE second " << current<< " "  << _newp2  << maxval << std::endl;;
-                    maintained[i].begin()->print_state();
+     //               std::cout <<"STATE second " << current<< " "  << _newp2  << maxval << std::endl;;
+     //               maintained[i].begin()->print_state();
                 
                 
                 }
@@ -155,12 +155,12 @@ State Indenputopk::indenputopk(const Engine::Source &source, const Indenputopk::
                 //    iter->update_probability(_newp2);
                     
                     maintained[k].sort(state_compare);
-                    std::cout << maintained[k].begin()->prob() << std::endl;
+                 //   std::cout << maintained[k].begin()->prob() << std::endl;
                     maintained[k].erase(maintained[k].begin());
-                    std::cout << maintained[k].begin()->prob() << std::endl;
+                 //   std::cout << maintained[k].begin()->prob() << std::endl;
                     
-            }else
-                std::cout << maintained[k].begin()->prob() << std::endl;
+            }//else
+                //std::cout << maintained[k].begin()->prob() << std::endl;
 
         }
 

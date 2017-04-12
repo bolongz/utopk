@@ -75,17 +75,17 @@ State Utopk::topk(const Engine &engine, const Engine::Source &source, const Utop
     //Engine engine(R, source);
     deep = -1;
     int _size = int(source.size());
-    std::cout << deep <<" " << source.size() << " " << std::endl;
+    //std::cout << deep <<" " << source.size() << " " << std::endl;
     while( deep < _size || !Q.empty()){
         
         State s1 = Q.top();
         State *s = &s1;
         //State *s = const_cast<State*>(&Q.top());
-        std::cout <<"XXXXQ: " << Q.size() << std::endl;
+        //std::cout <<"XXXXQ: " << Q.size() << std::endl;
         Q.pop();
         s->print_state();
         last = s->end();
-        std::cout << "----BEFORE: " <<Q.size() <<" " <<  s->length() <<" "  <<k << " "<< s->end()  << " " << deep << " " << s->prob() << std::endl;
+        //std::cout << "----BEFORE: " <<Q.size() <<" " <<  s->length() <<" "  <<k << " "<< s->end()  << " " << deep << " " << s->prob() << std::endl;
         if(int(s->length()) == k){
             
             return (*s);
@@ -101,23 +101,23 @@ State Utopk::topk(const Engine &engine, const Engine::Source &source, const Utop
             }
             
        
-            std::cout << "XXX  " << last << " " << deep << std:: endl;
+            //std::cout << "XXX  " << last << " " << deep << std:: endl;
             State state1 = *s;
             State state2 = *s;
         
             state1.extend(last, true);  // positive 
             state2.extend(last, false); //negative 
         
-            std::cout << "STATE EXT " << std::endl;
+            //std::cout << "STATE EXT " << std::endl;
             state1.print_state();
             state2.print_state();
-            std::cout << "STATE EXT " << std::endl;
+            //std::cout << "STATE EXT " << std::endl;
         
             double prob1 = engine.computing_state_probability(state1);
-            std::cout <<" =++++++++++++++" << std::endl;
+            //std::cout <<" =++++++++++++++" << std::endl;
             double prob2 = engine.computing_state_probability(state2);
         
-            std::cout << "Prob: " << prob1 << "  " << prob2 << std::endl;
+            //std::cout << "Prob: " << prob1 << "  " << prob2 << std::endl;
             state1.update_probability(prob1);
             state2.update_probability(prob2);
         

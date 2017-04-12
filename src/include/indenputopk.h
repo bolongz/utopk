@@ -1,3 +1,7 @@
+/* Author: Bolong Zhang */
+/* Email: blzhang.m@gmail.com */
+
+
 #ifndef _INDENPUTOPK_
 #define _INDENPUTOPK_
 
@@ -35,6 +39,7 @@ class Indenputopk{
         Maintained get_maintained() const {return maintained;}
         Answer get_answer() const {return answer;}
 
+        // indenpendent topk seeking function 
         State indenputopk(const Engine::Source &source, const Querylength k);
 
 };

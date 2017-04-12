@@ -72,7 +72,7 @@ Indenpukrank::Results Indenpukrank::indenpukrank(const Engine::Source &source, s
             
             M[0][i] = M[0][i] * (1.0 - source[j].confidence());
         }
-        std::cout << M[0][i] << std::endl;        
+//        std::cout << M[0][i] << std::endl;        
     
     }
 
@@ -101,14 +101,14 @@ Indenpukrank::Results Indenpukrank::indenpukrank(const Engine::Source &source, s
         double maxval = M[i][0];
         size_t maxloc = 0;
         for(size_t j = 0; j < M[i].size(); j++){
-            std::cout << M[i][j] <<" "; 
+//            std::cout << M[i][j] <<" "; 
             if(maxval < M[i][j]){
             
                 maxval = M[i][j];
                 maxloc = j;
             }
         }
-        std::cout << std::endl;
+//        std::cout << std::endl;
         results[i] = maxloc;
     }
     return results;
