@@ -8,7 +8,8 @@ CFLAGS = $(OPTFLAG)  $(INCDIR)
 COMPILE = $(CC) $(CFLAGS) -c
 
 OBJS= indenpukrank.o indenputopk.o tuple.o \
-	  state.o engine.o utopk.o ukrank.o test.o
+	  state.o engine.o utopk.o ukrank.o caller.o test.o
+
 
 SUB=$(OBJS:%.o=obj/%.o)
 
