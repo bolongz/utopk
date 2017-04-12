@@ -4,7 +4,7 @@
 #include "state.h"
 #include <cassert>
 
-State::State(): _prob{1.0}, _length{0}, _end{1000000}{}
+State::State(): _prob{1.0}, _length{0}, _end{-1},_rank{-1}{}
 
 State::State(const State &cu){
 
@@ -13,6 +13,7 @@ State::State(const State &cu){
     _prob = cu.prob();
     _length = cu.length();
     _end = cu.end();
+
 }
 
 State::State(State &&cu){
@@ -76,8 +77,8 @@ State::~State(){
     Current().swap(_negative);
     _prob = 1.0;
     _length = 0.0;
-    _end = 1000000;
-
+    _end = -1;
+    _rank = -1;
 }
 
 void State::extend(const State::Sta &s, const bool &positive){ // extension length
@@ -85,14 +86,15 @@ void State::extend(const State::Sta &s, const bool &positive){ // extension leng
     if(positive){
         _current.push_back(s);
         _length = _length + 1;
-        _end = s;
+        _rank = s;
     }else{
         _negative.push_back(s);
     }
+    _end = s;
 }
 
 void State::update_probability(const State::Prob &newp){
-    assert(_prob >= newp);
+   // assert(_prob >= newp);
     _prob = newp;
 }
 

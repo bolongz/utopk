@@ -40,7 +40,7 @@ class Engine{
         Size size()const {return _size;}
         
         /* Calculating the state probability */ 
-        Prob computing_state_probability(const State &s);
+        Prob computing_state_probability(const State &s) const;
 
 };
 

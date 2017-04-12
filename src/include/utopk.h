@@ -17,10 +17,10 @@ class Utopk{
     //typedef std::vector<Tuple> Source; //source tuple ranked with socre
     public:
         typedef std::vector<Tuple> Seen; // seen tuples 
-        typedef size_t Deepth; //scan deepth 
+        typedef int Deepth; //scan deepth 
         typedef int Length; // state length 
-        typedef size_t Last;  // last seen tuples 
-        typedef size_t Querylength;
+        typedef int Last;  // last seen tuples 
+        typedef int Querylength;
     private:
  //       std::priority_queue<State, std::vector<State>, decltype(cmp)> Q(cmp);
         State state; // empty state with length 0, and prob 1.0
@@ -48,7 +48,7 @@ class Utopk{
         Last get_last()const {return last;}
         Seen get_seen()const {return seen_tuples;}
 
-        State topk(const Engine::Rules &R, const Engine::Source &source, const Querylength &k);    
+        State topk(const Engine  &engine, const Engine::Source &source, const Querylength &k);    
 };
 
 

@@ -21,7 +21,7 @@ class Ukrank{
 
         Answer answer;
         Ubounds ubounds;
-        AnswerProbability ap;
+        AnswerProbability ap; //answer probability 
         Flag rflag;//store if the answer has already reported;
         Depth depth;
         Space space;
@@ -46,7 +46,7 @@ class Ukrank{
         Reported get_reported() const {return reported;}
 
 
-        Answer ukrank(const Engine::Rules &R, const Engine::Source &source, const Querylength &k);
+        Answer ukrank(const Engine &engine, const Engine::Source &source, const Querylength &k);
 };
 
 #endif
