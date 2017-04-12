@@ -71,7 +71,7 @@ State Utopk::topk(const Engine &engine, const Engine::Source &source, const Utop
     std::priority_queue<State, std::vector<State>, decltype(cmp)> Q(cmp);
     
     Q.push(state); // put the initial state into Q
-    state.print_state();
+//    state.print_state();
     //Engine engine(R, source);
     deep = -1;
     int _size = int(source.size());
@@ -83,7 +83,7 @@ State Utopk::topk(const Engine &engine, const Engine::Source &source, const Utop
         //State *s = const_cast<State*>(&Q.top());
         //std::cout <<"XXXXQ: " << Q.size() << std::endl;
         Q.pop();
-        s->print_state();
+//        s->print_state();
         last = s->end();
         //std::cout << "----BEFORE: " <<Q.size() <<" " <<  s->length() <<" "  <<k << " "<< s->end()  << " " << deep << " " << s->prob() << std::endl;
         if(int(s->length()) == k){
@@ -109,8 +109,8 @@ State Utopk::topk(const Engine &engine, const Engine::Source &source, const Utop
             state2.extend(last, false); //negative 
         
             //std::cout << "STATE EXT " << std::endl;
-            state1.print_state();
-            state2.print_state();
+   //         state1.print_state();
+    //        state2.print_state();
             //std::cout << "STATE EXT " << std::endl;
         
             double prob1 = engine.computing_state_probability(state1);

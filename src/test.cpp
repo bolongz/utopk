@@ -81,7 +81,6 @@ int main(int argc, char *argv[]){
             int a;
             while(iss >>a) {
                 s.insert(a);
-                std::cout << a << std::endl;
             }
     
             r.push_back(s);
