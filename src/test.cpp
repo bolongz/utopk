@@ -62,9 +62,16 @@ int main(int argc, char *argv[]){
     
     Ukrank ukrank;
     
-    std::vector<int> res = ukrank.ukrank(engine, source, 2);
-    
+    //std::vector<int> res = ukrank.ukrank(engine, source, 2);
+    Indenputopk itopk;
+    //State res = itopk.indenputopk(source, 3);
+
+    //res.print_state();
+    Indenpukrank krank;
+    std::vector<int> res  = krank.indenpukrank(source, 3);
     for(int i = 0 ; i < res.size(); i++){
+    
+    
         std::cout << res[i] <<" ";
     }
     std::cout << std::endl;

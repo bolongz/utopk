@@ -5,13 +5,14 @@
 #include "state.h"
 #include "engine.h"
 #include <vector>
+#include <list> 
 
 using namespace std;
 
 class Indenputopk{
 
     public:
-        typedef std::vector<std::vector<State>>  Maintained; //store the maintained state.
+        typedef std::vector<std::list<State>>  Maintained; //store the maintained state.
         typedef State Answer;
         typedef State Max; // store the current max state 
         typedef size_t Querylength; // Querylength 
