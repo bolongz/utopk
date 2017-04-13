@@ -17,10 +17,10 @@ SUB=$(OBJS:%.o=obj/%.o)
 ALL: $(EXE)
 
 $(EXE): $(SUB)
-	@$(CC) $(CFLAGS) -o  $(EXE) $(SUB)
 	@echo linking $(@F)...
+	@$(CC) $(CFLAGS) -o  $(EXE) $(SUB)
 obj/%.o: src/%.cpp
-	@$(COMPILE) -o  $@  $< $(MYINCLDIR)
 	@echo compiling $(@F)...
+	@$(COMPILE) -o  $@  $< $(MYINCLDIR)
 clean:
 	\rm -f ./obj/*.o  utopk
