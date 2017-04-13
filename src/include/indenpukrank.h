@@ -17,11 +17,12 @@ class Indenpukrank{
     public:
         typedef std::vector<int> Results;
         typedef std::vector<std::vector<double>> Dynamic;
+        typedef int Depth;    
     
     private:
-
         Results results;
         Dynamic M;
+        Depth depth;
 
     public:
 
@@ -35,7 +36,7 @@ class Indenpukrank{
 
         Results get_results() const { return results;}
         Dynamic get_matrix() const {return M;}
-        
+        Depth get_depth() const{return depth;}
         //indenpdent krank seeking function 
         Results indenpukrank(const Engine::Source &source, size_t k);
         

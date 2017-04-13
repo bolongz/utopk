@@ -14,8 +14,13 @@
 /* caller class */
 class Caller{
     
-    private:
 
+    typedef std::vector<std::vector<std::string>> DB;
+    typedef std::vector<std::string> DBtype;
+    typedef int Depth;
+    typedef double Time;
+    private:
+        
         Engine::Source source;
        // Engine::Rules r; 
         Engine engine;
@@ -23,12 +28,25 @@ class Caller{
         Ukrank ukrank;//ukrank object;
         Indenputopk itopk; //indenputopk object;
         Indenpukrank krank; //indenpurank object;
-    
-    
+        
+        Time _time;
+        Depth _depth;
+        
+        DB results;
+
     public:
     
         Caller();
+       
+        void db_to_source(const DB &db, Engine::Source &_s);
+        
+        Time run_time() const {return _time;}
+        Depth scan_depth() const{return _depth;}
+        
+        DB get_results() const{ return results;}
+
         void start(const Engine::Source &source, const Engine::Rules &r);
+        
         void processing_utopk(int k);
         void processing_ukrank(int k);
         void processing_indenputopk(int k);

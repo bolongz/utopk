@@ -77,19 +77,6 @@ Engine::~Engine(){
 
 }
 
-void Engine::db_to_source(const Engine::DB &db, Engine::Source &_s){
-
-    if (_s.size() != db.size()){
-        _s.resize(db.size());
-    }
-    Tuple tuple;
-    for(size_t i = 0; i < db.size(); i++){
-    
-        tuple.parse_string(db[i]);
-        _s[i] = tuple;
-    }
-
-}
 void Engine::start(const Engine::Rules & R, const Engine::Source &S){
     
     _source = S;

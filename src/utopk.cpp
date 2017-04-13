@@ -2,14 +2,14 @@
 /* Email: blzhang.m@gmail.com */
 
 #include "utopk.h"
-
+#include <ctime>
 /*constructor */
 Utopk::Utopk():deep(-1), length{0},last(-1){}
 
 Utopk::Utopk(const Utopk &t){
 
    state = t.get_state();
-   deep = t.get_deep();
+   deep = t.get_depth();
    length = t.get_length();
    last = t.get_last();
    seen_tuples = t.get_seen();
@@ -19,7 +19,7 @@ Utopk::Utopk(const Utopk &t){
 Utopk::Utopk(Utopk &&t){
 
    state = t.get_state();
-   deep = t.get_deep();
+   deep = t.get_depth();
    length = t.get_length();
    last = t.get_last();
    seen_tuples = t.get_seen();
@@ -34,7 +34,7 @@ const Utopk &Utopk::operator=(const Utopk &t){
         return *this;
    }
    state = t.get_state();
-   deep = t.get_deep();
+   deep = t.get_depth();
    length = t.get_length();
    last = t.get_last();
    seen_tuples = t.get_seen();
@@ -49,7 +49,7 @@ Utopk &Utopk::operator=(Utopk &&t){
         return *this;
    }
    state = t.get_state();
-   deep = t.get_deep();
+   deep = t.get_depth();
    length = t.get_length();
    last = t.get_last();
    seen_tuples = t.get_seen();
@@ -66,7 +66,7 @@ Utopk::~Utopk(){
 }
 /* Processing topk */
 State Utopk::topk(const Engine &engine, const Engine::Source &source, const Utopk::Querylength &k) {
-   
+      
     auto cmp= [](State left, State right) {return left.prob() < right.prob();};
     std::priority_queue<State, std::vector<State>, decltype(cmp)> Q(cmp);
     

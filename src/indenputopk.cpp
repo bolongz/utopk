@@ -206,6 +206,7 @@ State Indenputopk::indenputopk(const Engine::Source &source, const Indenputopk::
         }
     
     }
+    depth = current;
     return *(maintained[k].begin());
 
 }

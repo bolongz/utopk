@@ -21,10 +21,11 @@ class Indenputopk{
         typedef State Max; // store the current max state 
         typedef size_t Querylength; // Querylength 
         typedef int Current; //store the index for the current index 
+        typedef int Depth;
     private:
         Maintained maintained; //with length k + 1 // start with zero
         Answer answer; //store the answer
-        
+        Depth depth;
 
     public:
         
@@ -38,7 +39,7 @@ class Indenputopk{
 
         Maintained get_maintained() const {return maintained;}
         Answer get_answer() const {return answer;}
-
+        Depth get_depth() const{return depth;}
         // indenpendent topk seeking function 
         State indenputopk(const Engine::Source &source, const Querylength k);
 

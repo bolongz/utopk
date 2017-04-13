@@ -8,7 +8,7 @@
 #include "state.h"
 #include "engine.h"
 #include <queue>
-
+#include <ctime>
 
 //auto cmp= [](State left, State right) {return left.prob() < right.prob();};
 
@@ -29,8 +29,8 @@ class Utopk{
         Last last;
        // Source source; 
        // Querylength k; // query length 
-       Seen seen_tuples; // define the tuples already seen 
-
+        Seen seen_tuples; // define the tuples already seen 
+        
     public:
         /*constructor */
 
@@ -43,7 +43,7 @@ class Utopk{
         ~Utopk();
 
         State get_state()const {return state;}
-        Deepth get_deep()const {return deep;}
+        Deepth get_depth()const {return deep + 1;}
         Length get_length()const {return length;}
         Last get_last()const {return last;}
         Seen get_seen()const {return seen_tuples;}
