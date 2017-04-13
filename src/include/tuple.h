@@ -20,9 +20,10 @@ class Tuple{
     public:
 
         typedef std::string TupleID;
-        typedef int Score;
+        typedef double Score;
         typedef double Confidence;
         typedef int Tag; 
+        typedef std::vector<std::string> DBtype;
 
     private:
        
@@ -52,6 +53,11 @@ class Tuple{
         void modify_score(const Score &newscore);
         void modify_tag(const Tag &newtag);
         void modify_confidence(const Confidence &newconf);
+
+        void parse_string(const DBtype & s); // parse the dbtype string to tuple
+        DBtype tuple_to_dbtype(); // convert the tuple to dbtype 
+
+        
 };
 /*
 bool operator==(const Tuple &l, const Tuple &r){

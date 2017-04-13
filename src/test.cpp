@@ -60,12 +60,20 @@ int main(int argc, char *argv[]){
         
         std::istringstream iss(line);
 
-        std::string a; int  b; double c;
+        std::string a ,  b, c;
         iss >> a >> b >> c;
-        tuple.modify_id(a);
-        tuple.modify_score(b);
-        tuple.modify_confidence(c);
         
+        std::vector<std::string> ss; // push the input into vector<string> 
+        ss.push_back(a);
+        ss.push_back(b);
+        ss.push_back(c);
+        
+        //tuple.modify_id(a);
+        //tuple.modify_score(b);
+        //tuple.modify_confidence(c);
+        
+        tuple.parse_string(ss);
+
         source.push_back(tuple);
     
     }

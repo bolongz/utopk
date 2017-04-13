@@ -19,6 +19,8 @@ class Engine{
         typedef std::set<int> Union;
         typedef std::set<int>::iterator Iterator;
         typedef int Size; 
+        typedef std::vector<std::vector<std::string>> DB;
+
     private:
         //Rules _rules; //store the rules 
         Source _source; // store the source 
@@ -38,12 +40,15 @@ class Engine{
        
         ~Engine();
         
+        
         void start(const Rules &R, const Source &S);
 
         Source source() const { return _source;}
         Binary rules()const {return _rules;}
         Union unio()const {return _union;}
         Size size()const {return _size;}
+        
+        void db_to_source(const DB &db, Source &_s);
         
         /* Calculating the state probability */ 
         Prob computing_state_probability(const State &s) const;

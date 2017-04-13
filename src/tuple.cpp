@@ -3,8 +3,8 @@
  */
 
 #include "tuple.h"
-
-
+#include <cassert>
+#include <sstream>
 /* Implementation of the Tuple class */
 Tuple::Tuple():_tag{-1},_score{-1},_confidence{-1}{}
 
@@ -90,4 +90,25 @@ void Tuple::modify_score(const Score &newscore ){
 }
 void Tuple::modify_confidence(const Confidence &newconf){
     _confidence = newconf;
+}
+
+void Tuple::parse_string(const Tuple::DBtype &s){
+
+    assert(s.size() == 3);
+    
+    std::string line = s[0] + " " + s[1] + " " + s[2];
+    std::istringstream iss(line);
+    
+    iss >> _id >> _score >> _confidence;
+}
+
+Tuple::DBtype Tuple::tuple_to_dbtype(){
+
+    DBtype db;
+    
+    db.push_back(_id);
+    db.push_back(std::to_string(_score));
+    db.push_back(std::to_string(_confidence));
+    
+    return db;
 }
