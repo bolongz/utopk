@@ -34,7 +34,7 @@ const Tuple &Tuple::operator=(const Tuple &tuple){
         return *this; 
     }
     
- //   _id = tuple.id();
+    _id = tuple.id();
     _tag = tuple.tag();
     _score = tuple.score();
     _confidence = tuple.confidence();
