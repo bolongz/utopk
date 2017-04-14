@@ -49,7 +49,7 @@ class Caller{
         
         void processing_utopk(int k);
         void processing_ukrank(int k);
-        void processing_indenputopk(int k);
+        void processing_indenputopk(int k, DB &_results);
         void processing_indenpukrank(int k);
 };
 

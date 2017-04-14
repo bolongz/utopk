@@ -65,7 +65,7 @@ void Caller::processing_ukrank(int k){
 
 }
 
-void Caller::processing_indenputopk(int k){
+void Caller::processing_indenputopk(int k, DB &_results){
     clock_t start = clock();
     State sta = itopk.indenputopk(source, k);
     clock_t end = clock();
@@ -75,15 +75,16 @@ void Caller::processing_indenputopk(int k){
     DB().swap(results); 
     for(size_t i = 0; i < sta.current().size(); i++){
         DBtype db = source[sta.current()[i]].tuple_to_dbtype();
-        results.push_back(db);
+        _results.push_back(db);
     }
-    /*for(size_t i = 0; i < sta.current().size(); i++){
+   
+    for(size_t i = 0; i < sta.current().size(); i++){
     
-        std::cout << source[sta.current()[i]].id() <<" ";
+        std::cout << source[sta.current()[i]].id() <<" " << std::endl;;
     
     }
     std::cout<<std::endl;
-    */
+    
 
 }
 

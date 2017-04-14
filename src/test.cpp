@@ -104,7 +104,8 @@ int main(int argc, char *argv[]){
     }else if(type == "ukrank"){
         caller.processing_ukrank(k);
     }else if(type == "iutopk"){
-        caller.processing_indenputopk(k);
+//        caller.processing_indenputopk(k);
+//        std::cout << "RUN TIME: " << caller.run_time() << std::endl;;
     }else if(type == "iukrank"){
         caller.processing_indenpukrank(k);
     }else{
