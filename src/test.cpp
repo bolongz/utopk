@@ -53,7 +53,7 @@ int main(int argc, char *argv[]){
     std::ifstream fin(data.c_str(), std::ios::in);
     string line;
 
-
+    std::vector<std::vector<std::string>> db;
 
     while(getline(fin, line)){
         Tuple tuple;
@@ -72,11 +72,17 @@ int main(int argc, char *argv[]){
         //tuple.modify_score(b);
         //tuple.modify_confidence(c);
         
-        tuple.parse_string(ss);
+       // tuple.parse_string(ss);
 
-        source.push_back(tuple);
-    
+       // source.push_back(tuple);
+        db.push_back(ss);
     }
+
+  //  for(int i = 0 ; i < source.size(); i++){
+   //dev 
+   //     std::cout << source[i].id() << " " << source[i].score() << " " << source[i].confidence() << std::endl;
+    
+   // }
     fin.close();
    
     if(argc > 4) {
@@ -97,20 +103,32 @@ int main(int argc, char *argv[]){
     }
     
     Caller caller;
-
+    caller.db_to_source(db, source);
     caller.start(source, r);
+    std::vector<std::vector<std::string>> results;
     if(type == "utopk"){
         caller.processing_utopk(k);
     }else if(type == "ukrank"){
         caller.processing_ukrank(k);
     }else if(type == "iutopk"){
-//        caller.processing_indenputopk(k);
-//        std::cout << "RUN TIME: " << caller.run_time() << std::endl;;
+        caller.processing_indenputopk(k, results);
+
+        std::cout << "RUN TIME: " << caller.run_time() << std::endl;;
     }else if(type == "iukrank"){
         caller.processing_indenpukrank(k);
     }else{
         std::cout << "Wrong Type" << std::endl;
     }
     
+    for(size_t i = 0; i < results.size(); i++){
+        
+        for(size_t j = 0; j < 3; j++){
+        
+            std::cout << results[i][j] << " ";
+        
+        }
+        std::cout << endl;
+    
+    }
     return 0; 
 }
