@@ -65,6 +65,7 @@ Indenpukrank::Results Indenpukrank::indenpukrank(const Launch::Source &source, s
         M[i].resize(_size);
     }
     std::vector<double> maxval(k,-1);
+    std::vector<double> accumulative(_size,1.0);
     Results maxloc(k,-1);
     std::vector<double> reminder(k,1.0);
     size_t current  = 0, i;
@@ -87,7 +88,8 @@ Indenpukrank::Results Indenpukrank::indenpukrank(const Launch::Source &source, s
     
                 double mij = source[current].confidence();
                 double _p = 0.0;
-                for(size_t m = 0; m < current; m++){
+             
+            /*   for(size_t m = 0; m < current; m++){
                     double __p = 1.0; 
                     for(size_t h = m + 1; h < current; h++){
                         __p = __p * (1.0 - source[h].confidence()); 
@@ -96,20 +98,38 @@ Indenpukrank::Results Indenpukrank::indenpukrank(const Launch::Source &source, s
                     _p = _p + __p;
                 
                 }
-
-                //M[i].push_back( mij * _p);
+            */
+                if(current == 0) {
+                    _p = 0.0;
+                }else{
+                    if(i == 1){
+                        for(size_t h = 1; h < current; h++){
+                            accumulative[h] = accumulative[h] * (1.0 -source[current-1].confidence());
+                            _p = _p + accumulative[h] * M[i-1][h-1];
+                        }
+                        _p = _p + accumulative[current] * M[i-1][current -1];
+                
+                    }else{
+                        
+                        for(size_t h = 1; h < current; h++){
+                            _p = _p + accumulative[h] * M[i-1][h-1];
+                        }
+                        _p = _p + accumulative[current] * M[i-1][current -1];
+                    
+                    }
+                }
                 M[i][current] = ( mij * _p);
     
         }
         size_t  temp = reported;
-      /*  for(i = 0; i < k ; i++){
+       /* for(i = 0; i < k ; i++){
             for(size_t j = 0; j < M[i].size(); j++){
                 std::cout << M[i][j] << " ";
             }
             std::cout << std::endl;
         }
             std::cout << std::endl;
-       */ for(i = reported; i < k ; i++){
+        */for(i = reported; i < k ; i++){
             //for(size_t j = current; j < M[i].size(); j++){
             //    std::cout << M[i][j] << " ";
                 size_t   j  = current;
@@ -124,7 +144,7 @@ Indenpukrank::Results Indenpukrank::indenpukrank(const Launch::Source &source, s
             if(maxval[i] > reminder[i]){
          //       if(check.find(maxloc[i]) == check.end()){
                     temp = reported + 1;
-                     std::cout << "REPORT " << reported << " " << maxloc[i] << std::endl;
+            //         std::cout << "REPORT " << reported << " " << maxloc[i] << std::endl;
                     results[i] = maxloc[i]; 
          //           check[maxloc[i]] = true;
               //  }
