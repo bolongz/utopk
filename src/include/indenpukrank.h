@@ -8,7 +8,7 @@
 
 #include "tuple.h"
 #include "state.h"
-#include "engine.h"
+#include "launch.h"
 #include <vector>
 
 
@@ -38,7 +38,7 @@ class Indenpukrank{
         Dynamic get_matrix() const {return M;}
         Depth get_depth() const{return depth;}
         //indenpdent krank seeking function 
-        Results indenpukrank(const Engine::Source &source, size_t k);
+        Results indenpukrank(const Launch::Source &source, size_t k);
         
 };
 

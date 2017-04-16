@@ -65,14 +65,14 @@ Utopk::~Utopk(){
     
 }
 /* Processing topk */
-State Utopk::topk(const Engine &engine, const Engine::Source &source, const Utopk::Querylength &k) {
+State Utopk::topk(const Launch &engine, const Launch::Source &source, const Utopk::Querylength &k) {
       
     auto cmp= [](State left, State right) {return left.prob() < right.prob();};
     std::priority_queue<State, std::vector<State>, decltype(cmp)> Q(cmp);
     
     Q.push(state); // put the initial state into Q
 //    state.print_state();
-    //Engine engine(R, source);
+    //Launch engine(R, source);
     deep = -1;
     int _size = int(source.size());
     //std::cout << deep <<" " << source.size() << " " << std::endl;

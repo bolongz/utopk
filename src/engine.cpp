@@ -1,12 +1,12 @@
 /* Author: Bolong Zhang */
 /* Email: blzhang.m@gmail.com */
 
-#include "engine.h"
+#include "launch.h"
 #include <bitset>
 #include <cmath>
-Engine::Engine():_size(-1){}; //empty constructor
+Launch::Launch():_size(-1){}; //empty constructor
 
-Engine::Engine(const Engine &e){
+Launch::Launch(const Launch &e){
     
     _source = e.source();
     _rules = e.rules();
@@ -14,14 +14,14 @@ Engine::Engine(const Engine &e){
     _size = e.size();
 }
 
-Engine::Engine(Engine &&e){
+Launch::Launch(Launch &&e){
     _source = e.source();
     _rules = e.rules();
     _union = e.unio();
     _size = e.size();
-    e.~Engine();
+    e.~Launch();
 }
-const Engine &Engine::operator=(const Engine &e){
+const Launch &Launch::operator=(const Launch &e){
     if(this == &e){
     
         return *this;
@@ -35,7 +35,7 @@ const Engine &Engine::operator=(const Engine &e){
     return *this;
 }
 
-Engine &Engine::operator=(Engine &&e){
+Launch &Launch::operator=(Launch &&e){
     
     if(this == &e){
     
@@ -45,12 +45,12 @@ Engine &Engine::operator=(Engine &&e){
     _rules = e.rules();
     _union = e.unio();
     _size = e.size();
-    e.~Engine();
+    e.~Launch();
 
     return *this; 
 
 }
-Engine::Engine(const Engine::Rules & R, const Engine::Source &S){
+Launch::Launch(const Launch::Rules & R, const Launch::Source &S){
     
     _source = S;
     _size = S.size();
@@ -68,7 +68,7 @@ Engine::Engine(const Engine::Rules & R, const Engine::Source &S){
     
 }
 
-Engine::~Engine(){
+Launch::~Launch(){
     
     Source().swap(_source);
     Binary().swap(_rules);
@@ -77,7 +77,7 @@ Engine::~Engine(){
 
 }
 
-void Engine::start(const Engine::Rules & R, const Engine::Source &S){
+void Launch::start(const Launch::Rules & R, const Launch::Source &S){
     
     _source = S;
     _size = S.size();
@@ -94,7 +94,7 @@ void Engine::start(const Engine::Rules & R, const Engine::Source &S){
     }
     
 }
-Engine::Prob Engine::computing_state_probability(const State &s) const{
+Launch::Prob Launch::computing_state_probability(const State &s) const{
    
     /* Length with prob 0 */
     //if(s.length() == 0) return 1.0;

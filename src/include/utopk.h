@@ -6,7 +6,7 @@
 
 #include "tuple.h"
 #include "state.h"
-#include "engine.h"
+#include "launch.h"
 #include <queue>
 #include <ctime>
 
@@ -48,7 +48,7 @@ class Utopk{
         Last get_last()const {return last;}
         Seen get_seen()const {return seen_tuples;}
 
-        State topk(const Engine  &engine, const Engine::Source &source, const Querylength &k);    
+        State topk(const Launch  &engine, const Launch::Source &source, const Querylength &k);    
 };
 
 

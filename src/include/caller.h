@@ -21,9 +21,9 @@ class Caller{
     typedef double Time;
     private:
         
-        Engine::Source source;
-       // Engine::Rules r; 
-        Engine engine;
+        Launch::Source source;
+       // Launch::Rules r; 
+        Launch engine;
         Utopk utopk; // utopk object;
         Ukrank ukrank;//ukrank object;
         Indenputopk itopk; //indenputopk object;
@@ -32,25 +32,23 @@ class Caller{
         Time _time;
         Depth _depth;
         
-        DB results;
+//        DB results;
 
     public:
     
         Caller();
-       
-        void db_to_source(const DB &db, Engine::Source &_s);
+        void db_to_source(const DB &db, Launch::Source &_s);
         
         Time run_time() const {return _time;}
         Depth scan_depth() const{return _depth;}
-        
-        DB get_results() const{ return results;}
+//        DB get_results() const{ return results;}
 
-        void start(const Engine::Source &source, const Engine::Rules &r);
+        void start(const Launch::Source &source, const Launch::Rules &r);
         
-        void processing_utopk(int k);
-        void processing_ukrank(int k);
-        void processing_indenputopk(int k, DB &_results);
-        void processing_indenpukrank(int k);
+        void processing_utopk(int k, DB &result);
+        void processing_ukrank(int k, DB &result);
+        void processing_indenputopk(int k, DB &results);
+        void processing_indenpukrank(int k, DB &result);
 };
 
 #endif

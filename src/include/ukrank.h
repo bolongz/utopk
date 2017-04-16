@@ -7,7 +7,7 @@
 
 #include "tuple.h"
 #include "state.h"
-#include "engine.h"
+#include "launch.h"
 
 class Ukrank{
 
@@ -50,7 +50,7 @@ class Ukrank{
         Reported get_reported() const {return reported;}
 
         //ukrank functon return the final krank results 
-        Answer ukrank(const Engine &engine, const Engine::Source &source, const Querylength &k);
+        Answer ukrank(const Launch &engine, const Launch::Source &source, const Querylength &k);
 };
 
 #endif

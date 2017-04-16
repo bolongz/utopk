@@ -7,7 +7,7 @@
 
 #include "tuple.h"
 #include "state.h"
-#include "engine.h"
+#include "launch.h"
 #include <vector>
 #include <list> 
 
@@ -41,7 +41,7 @@ class Indenputopk{
         Answer get_answer() const {return answer;}
         Depth get_depth() const{return depth;}
         // indenpendent topk seeking function 
-        State indenputopk(const Engine::Source &source, const Querylength k);
+        State indenputopk(const Launch::Source &source, const Querylength k);
 
 };
 

@@ -77,7 +77,7 @@ Ukrank::~Ukrank(){
     depth = 1;
     reported = 0;
 }
-Ukrank::Answer Ukrank::ukrank(const Engine &engine, const Engine::Source &source, const Ukrank::Querylength &k){
+Ukrank::Answer Ukrank::ukrank(const Launch &engine, const Launch::Source &source, const Ukrank::Querylength &k){
 
     answer.resize(k, -1);
     ap.resize(k, 0);

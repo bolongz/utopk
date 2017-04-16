@@ -13,8 +13,8 @@
 
 int main(int argc, char *argv[]){
 
-    Engine::Source source;
-    Engine::Rules r;
+    Launch::Source source;
+    Launch::Rules r;
     if(argc < 2){
         
         std::cout << "Run syntax:" << std::endl;
@@ -107,15 +107,22 @@ int main(int argc, char *argv[]){
     caller.start(source, r);
     std::vector<std::vector<std::string>> results;
     if(type == "utopk"){
-        caller.processing_utopk(k);
+        caller.processing_utopk(k, results);
+        std::cout << "RUN TIME: " << caller.run_time() << std::endl;;
+        std::cout << "Scane Depth: " << caller.scan_depth() << std::endl;;
     }else if(type == "ukrank"){
-        caller.processing_ukrank(k);
+        caller.processing_ukrank(k, results);
+        std::cout << "RUN TIME: " << caller.run_time() << std::endl;;
+        std::cout << "Scane Depth: " << caller.scan_depth() << std::endl;;
     }else if(type == "iutopk"){
         caller.processing_indenputopk(k, results);
 
         std::cout << "RUN TIME: " << caller.run_time() << std::endl;;
+        std::cout << "Scane Depth: " << caller.scan_depth() << std::endl;;
     }else if(type == "iukrank"){
-        caller.processing_indenpukrank(k);
+        caller.processing_indenpukrank(k, results);
+        std::cout << "RUN TIME: " << caller.run_time() << std::endl;;
+        std::cout << "Scane Depth: " << caller.scan_depth() << std::endl;;
     }else{
         std::cout << "Wrong Type" << std::endl;
     }

@@ -60,7 +60,7 @@ Indenputopk::~Indenputopk(){
     answer.~State();
 }
 
-State Indenputopk::indenputopk(const Engine::Source &source, const Indenputopk::Querylength k){
+State Indenputopk::indenputopk(const Launch::Source &source, const Indenputopk::Querylength k){
 
     maintained.resize(k + 1);
     size_t current = 0;
@@ -199,14 +199,14 @@ State Indenputopk::indenputopk(const Engine::Source &source, const Indenputopk::
             
             }
         }
-        if(maxval == k) return *(maintained[k].begin());
         current = current + 1;
+        depth = current;
+        if(maxval == k) return *(maintained[k].begin());
         if(temp > 0){
             longest = temp;
         }
     
     }
-    depth = current;
     return *(maintained[k].begin());
 
 }

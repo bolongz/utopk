@@ -13,13 +13,13 @@
 
 Caller::Caller(){};
 
-void Caller::start(const Engine::Source &_source, const Engine::Rules &r){
+void Caller::start(const Launch::Source &_source, const Launch::Rules &r){
     
     engine.start(r, _source);
     source = _source;
 }
 
-void Caller::processing_utopk(int k){
+void Caller::processing_utopk(int k, Caller::DB &results){
 
     clock_t start = clock();
     State sta = utopk.topk(engine, source, k);
@@ -41,7 +41,7 @@ void Caller::processing_utopk(int k){
     */
 }
 
-void Caller::processing_ukrank(int k){
+void Caller::processing_ukrank(int k, Caller::DB &results){
     
     clock_t start = clock();
     std::vector<int> res = ukrank.ukrank(engine, source, k);
@@ -65,36 +65,35 @@ void Caller::processing_ukrank(int k){
 
 }
 
-void Caller::processing_indenputopk(int k, DB &_results){
+void Caller::processing_indenputopk(int k, Caller::DB &results){
     clock_t start = clock();
     State sta = itopk.indenputopk(source, k);
     clock_t end = clock();
     _time = (double)(end-start)/CLOCKS_PER_SEC;
     _depth = itopk.get_depth();
+    std::cout <<"DEPTH: " << _depth << std::endl;
    
     DB().swap(results); 
     for(size_t i = 0; i < sta.current().size(); i++){
         DBtype db = source[sta.current()[i]].tuple_to_dbtype();
-        _results.push_back(db);
+        results.push_back(db);
     }
-   
+   /* 
     for(size_t i = 0; i < sta.current().size(); i++){
-    
         std::cout << source[sta.current()[i]].id() <<" " << std::endl;;
-    
     }
     std::cout<<std::endl;
-    
+    */
 
 }
 
-void Caller::processing_indenpukrank(int k){
+void Caller::processing_indenpukrank(int k, Caller::DB &results){
     
     clock_t start = clock();
     std::vector<int> res  = krank.indenpukrank(source, k);
     clock_t end = clock();
     _time = (double)(end-start)/CLOCKS_PER_SEC;
-    _depth = source.size();
+    _depth = krank.get_depth();
     DB().swap(results); 
     for(size_t i = 0; i < res.size(); i++){
         DBtype db = source[res[i]].tuple_to_dbtype();
@@ -110,7 +109,7 @@ void Caller::processing_indenpukrank(int k){
     */
 }
 
-void Caller::db_to_source(const Caller::DB &db, Engine::Source &_s){
+void Caller::db_to_source(const Caller::DB &db, Launch::Source &_s){
 
     if (_s.size() != db.size()){
         _s.resize(db.size());
