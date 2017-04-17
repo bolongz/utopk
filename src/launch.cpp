@@ -99,7 +99,7 @@ Launch::Prob Launch::computing_state_probability(const State &s) const{
     /* Length with prob 0 */
     //if(s.length() == 0) return 1.0;
 
-    int current = 0;;
+    long long int current = 0;;
     bool flag = true;
     double prob = 1.0, sum = 0.0;
     for(size_t i = 0; i < s.current().size();i++){
@@ -107,7 +107,8 @@ Launch::Prob Launch::computing_state_probability(const State &s) const{
 //        std::cout << "SCURRENT " << s.current()[i] <<" " << current ;
     }
 //    std::cout << std::endl << "SIZE " << _size << " " << _rules.size() <<  std::endl;
-    for(int sub = 0; sub < 1 << _size; sub++){
+    //for(int sub = 0; sub < 1 << _size; sub++){
+    for(long long int sub = 0; sub < 1 << _size; sub++){
         flag = true; 
         /* check the rules */
         for(size_t i = 0 ; i < _rules.size(); i++){

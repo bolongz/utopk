@@ -72,7 +72,7 @@ int main(int argc, char *argv[]){
         //tuple.modify_score(b);
         //tuple.modify_confidence(c);
         
-       // tuple.parse_string(ss);
+        //tuple.parse_string(ss);
 
        // source.push_back(tuple);
         db.push_back(ss);
@@ -104,6 +104,11 @@ int main(int argc, char *argv[]){
     
     Caller caller;
     caller.db_to_source(db, source);
+    for(int i = 0 ; i < source.size(); i++){
+   //dev 
+        std::cout << source[i].id() << " " << source[i].score() << " " << source[i].confidence() << std::endl;
+    
+    }
     caller.start(source, r);
     std::vector<std::vector<std::string>> results;
     if(type == "utopk"){

@@ -8,6 +8,7 @@
 #include "tuple.h"
 #include "state.h"
 #include "launch.h"
+#include <list>
 
 class Ukrank{
 
@@ -18,7 +19,7 @@ class Ukrank{
         typedef std::vector<bool> Flag;
         typedef size_t Reported;
         typedef size_t Depth;
-        typedef std::vector<State> Space;
+        typedef std::list<State> Space;
         typedef size_t Querylength;
 
     private:
