@@ -104,11 +104,6 @@ int main(int argc, char *argv[]){
     
     Caller caller;
     caller.db_to_source(db, source);
-    for(int i = 0 ; i < source.size(); i++){
-   //dev 
-        std::cout << source[i].id() << " " << source[i].score() << " " << source[i].confidence() << std::endl;
-    
-    }
     caller.start(source, r);
     std::vector<std::vector<std::string>> results;
     if(type == "utopk"){
@@ -131,15 +126,10 @@ int main(int argc, char *argv[]){
     }else{
         std::cout << "Wrong Type" << std::endl;
     }
-    
+
     for(size_t i = 0; i < results.size(); i++){
-        
-        for(size_t j = 0; j < 3; j++){
-        
-            std::cout << results[i][j] << " ";
-        
-        }
-        std::cout << endl;
+    
+        std::cout<<results[i][0] << " " << results[i][1] <<" " << results[i][2] << std::endl;
     
     }
     return 0; 

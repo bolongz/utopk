@@ -89,7 +89,7 @@ Ukrank::Answer Ukrank::ukrank(const Launch &engine, const Launch::Source &source
         int _min = std::min(k, depth);
          
         int _size = space.size();
-        std::cout <<"BEFORE " <<  _size << std::endl;
+   //     std::cout <<"BEFORE " <<  _size << std::endl;
         State state1, state2;
         int count1 = 0;
         int count = _size;;
@@ -109,10 +109,10 @@ Ukrank::Answer Ukrank::ukrank(const Launch &engine, const Launch::Source &source
                         state2.extend(t,false);
 
                         /* calculting probability */
-                        std::cout << "CCCCCCCCCCCCCCCCC" << std::endl;
+   //                     std::cout << "CCCCCCCCCCCCCCCCC" << std::endl;
                         double prob1 = engine.computing_state_probability(state1); 
                         double prob2 = engine.computing_state_probability(state2); 
-                        std::cout << "CCCCCCCCCCCCCCCCC" << std::endl;
+   //                     std::cout << "CCCCCCCCCCCCCCCCC" << std::endl;
                         /* calculting probability */
                         state1.update_probability(prob1);
                         state2.update_probability(prob2);
@@ -195,8 +195,8 @@ Ukrank::Answer Ukrank::ukrank(const Launch &engine, const Launch::Source &source
    //     auto iter2 = space.begin();
    //     std::advance(iter2, _size);
    //     space.erase(iter, iter2);
-        std::cout << "AFTER " << space.size() << " " << _size<< std::endl;
-        std::cout <<"Erase " <<  count1<<std::endl;
+       // std::cout << "AFTER " << space.size() << " " << _size<< std::endl;
+   //     std::cout <<"Erase " <<  count1<<std::endl;
     }
     depth = depth - 1;
     return answer;
