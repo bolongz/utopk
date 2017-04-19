@@ -71,12 +71,10 @@ Indenpukrank::Results Indenpukrank::indenpukrank(const Launch::Source &source, s
     size_t current  = 0, i;
     size_t reported = 0;
     
-    //    std::map<int, bool> check;
     while(current < _size){
 
         
         
-        //M[0].push_back( source[current].confidence());
         M[0][current] = ( source[current].confidence());
         
         for(size_t j = 0; j < current; j++){
@@ -89,16 +87,6 @@ Indenpukrank::Results Indenpukrank::indenpukrank(const Launch::Source &source, s
                 double mij = source[current].confidence();
                 double _p = 0.0;
              
-            /*   for(size_t m = 0; m < current; m++){
-                    double __p = 1.0; 
-                    for(size_t h = m + 1; h < current; h++){
-                        __p = __p * (1.0 - source[h].confidence()); 
-                    }
-                    __p = __p * M[i-1][m];
-                    _p = _p + __p;
-                
-                }
-            */
                 if(current == 0) {
                     _p = 0.0;
                 }else{
@@ -121,33 +109,18 @@ Indenpukrank::Results Indenpukrank::indenpukrank(const Launch::Source &source, s
                 M[i][current] = ( mij * _p);
     
         }
+
         size_t  temp = reported;
-       /* for(i = 0; i < k ; i++){
-            for(size_t j = 0; j < M[i].size(); j++){
-                std::cout << M[i][j] << " ";
-            }
-            std::cout << std::endl;
-        }
-            std::cout << std::endl;
-        */for(i = reported; i < k ; i++){
-            //for(size_t j = current; j < M[i].size(); j++){
-            //    std::cout << M[i][j] << " ";
+        for(i = reported; i < k ; i++){
                 size_t   j  = current;
                 reminder[i] = reminder[i] - M[i][j];
                 if(maxval[i] < M[i][j]){
                     maxval[i] = M[i][j];
                     maxloc[i] = j;
                 }
-            //}
-           // std::cout << std::endl;
-          //  std::cout << "CURRENT " << current << " " << i << " " << maxval[i] <<" " << reminder[i] << std::endl;
             if(maxval[i] > reminder[i]){
-         //       if(check.find(maxloc[i]) == check.end()){
                     temp = reported + 1;
-            //         std::cout << "REPORT " << reported << " " << maxloc[i] << std::endl;
                     results[i] = maxloc[i]; 
-         //           check[maxloc[i]] = true;
-              //  }
             }
         }
         current = current + 1;     

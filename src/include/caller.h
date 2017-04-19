@@ -32,7 +32,6 @@ class Caller{
         Time _time;
         Depth _depth;
         
-//        DB results;
 
     public:
     

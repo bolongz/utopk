@@ -32,13 +32,6 @@ void Caller::processing_utopk(int k, Caller::DB &results){
         DBtype db = source[sta.current()[i]].tuple_to_dbtype();
         results.push_back(db);
     }
-    /*
-    for(size_t i = 0; i < sta.current().size(); i++){
-        std::cout << source[sta.current()[i]].id() <<" ";
-    
-    }
-    std::cout<<std::endl;
-    */
 }
 
 void Caller::processing_ukrank(int k, Caller::DB &results){
@@ -53,15 +46,6 @@ void Caller::processing_ukrank(int k, Caller::DB &results){
         DBtype db = source[res[i]].tuple_to_dbtype();
         results.push_back(db);
     }
-        
-    /*
-    for(size_t i = 0; i < res.size(); i++){
-        std::cout << source[res[i]].id() <<" ";
-    
-    }
-    std::cout<<std::endl;
-    */
-    
 
 }
 
@@ -78,12 +62,6 @@ void Caller::processing_indenputopk(int k, Caller::DB &results){
         DBtype db = source[sta.current()[i]].tuple_to_dbtype();
         results.push_back(db);
     }
-   /* 
-    for(size_t i = 0; i < sta.current().size(); i++){
-        std::cout << source[sta.current()[i]].id() <<" " << std::endl;;
-    }
-    std::cout<<std::endl;
-    */
 
 }
 
@@ -100,13 +78,6 @@ void Caller::processing_indenpukrank(int k, Caller::DB &results){
         results.push_back(db);
     }
     
-   /* 
-    for(size_t i = 0; i < res.size(); i++){
-        std::cout << source[res[i]].id() <<" ";
-    
-    }
-    std::cout<<std::endl;
-    */
 }
 
 void Caller::db_to_source(const Caller::DB &db, Launch::Source &_s){

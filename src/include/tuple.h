@@ -59,24 +59,4 @@ class Tuple{
 
         
 };
-/*
-bool operator==(const Tuple &l, const Tuple &r){
-
-    if(l.id() == r.id() && l.score()==r.score() && 
-       l.tag() == r.tag() && l.confidence() == r.confidence()){
-
-        return true;
-    }
-    return false;
-}
-
-bool operator!=(const Tuple &l, const Tuple &r){
-    return !(operator==(l,r));
-}
-
-std::ostream &operator<< (std::ostream &os, const Tuple &t){
-    os << t.id() <<" " << t.tag() <<" " << t.score() << " " << t.confidence() << std::endl;
-    return os;
-}
-*/
 #endif

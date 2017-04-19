@@ -68,21 +68,9 @@ int main(int argc, char *argv[]){
         ss.push_back(b);
         ss.push_back(c);
         
-        //tuple.modify_id(a);
-        //tuple.modify_score(b);
-        //tuple.modify_confidence(c);
-        
-        //tuple.parse_string(ss);
-
-       // source.push_back(tuple);
         db.push_back(ss);
     }
 
-  //  for(int i = 0 ; i < source.size(); i++){
-   //dev 
-   //     std::cout << source[i].id() << " " << source[i].score() << " " << source[i].confidence() << std::endl;
-    
-   // }
     fin.close();
    
     if(argc > 4) {
@@ -103,26 +91,26 @@ int main(int argc, char *argv[]){
     }
     
     Caller caller;
-    caller.db_to_source(db, source);
-    caller.start(source, r);
-    std::vector<std::vector<std::string>> results;
+    caller.db_to_source(db, source); //from db type to source 
+    caller.start(source, r); // start engine;
+    std::vector<std::vector<std::string>> results; //results 
     if(type == "utopk"){
         caller.processing_utopk(k, results);
         std::cout << "RUN TIME: " << caller.run_time() << std::endl;;
-        std::cout << "Scane Depth: " << caller.scan_depth() << std::endl;;
+        std::cout << "Scan Depth: " << caller.scan_depth() << std::endl;;
     }else if(type == "ukrank"){
         caller.processing_ukrank(k, results);
         std::cout << "RUN TIME: " << caller.run_time() << std::endl;;
-        std::cout << "Scane Depth: " << caller.scan_depth() << std::endl;;
+        std::cout << "Scan Depth: " << caller.scan_depth() << std::endl;;
     }else if(type == "iutopk"){
         caller.processing_indenputopk(k, results);
 
         std::cout << "RUN TIME: " << caller.run_time() << std::endl;;
-        std::cout << "Scane Depth: " << caller.scan_depth() << std::endl;;
+        std::cout << "Scan Depth: " << caller.scan_depth() << std::endl;;
     }else if(type == "iukrank"){
         caller.processing_indenpukrank(k, results);
         std::cout << "RUN TIME: " << caller.run_time() << std::endl;;
-        std::cout << "Scane Depth: " << caller.scan_depth() << std::endl;;
+        std::cout << "Scan Depth: " << caller.scan_depth() << std::endl;;
     }else{
         std::cout << "Wrong Type" << std::endl;
     }

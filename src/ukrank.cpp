@@ -89,16 +89,13 @@ Ukrank::Answer Ukrank::ukrank(const Launch &engine, const Launch::Source &source
         int _min = std::min(k, depth);
          
         int _size = space.size();
-   //     std::cout <<"BEFORE " <<  _size << std::endl;
         State state1, state2;
         int count1 = 0;
         int count = _size;;
         for(int i = 1; i <= _min; i++ ){
             double prob = 0.0; // P_t,i
             if(!space.empty()){
-               // for(int j = lastsize; j < _size; j++){
                 for(auto iter = space.begin(); iter != space.end(); ){      
-                    //if(space[j].length() == (i - 1)){
                     if(count == 0) break; 
                     if(iter->end() == t) break; 
                     if(iter->length() == (i - 1)){
@@ -109,10 +106,8 @@ Ukrank::Answer Ukrank::ukrank(const Launch &engine, const Launch::Source &source
                         state2.extend(t,false);
 
                         /* calculting probability */
-   //                     std::cout << "CCCCCCCCCCCCCCCCC" << std::endl;
                         double prob1 = engine.computing_state_probability(state1); 
                         double prob2 = engine.computing_state_probability(state2); 
-   //                     std::cout << "CCCCCCCCCCCCCCCCC" << std::endl;
                         /* calculting probability */
                         state1.update_probability(prob1);
                         state2.update_probability(prob2);
@@ -127,7 +122,6 @@ Ukrank::Answer Ukrank::ukrank(const Launch &engine, const Launch::Source &source
                         iter++;
                     
                     }
-                   // count = count + 1;
                     
                 }
             }else{
@@ -147,13 +141,10 @@ Ukrank::Answer Ukrank::ukrank(const Launch &engine, const Launch::Source &source
             } 
             
             auto iter2 = space.begin();
-            //std::advance(iter2, _size);
 
             for(auto iter = iter2; iter!= space.end();iter++){ 
                 if(iter->length() == i && iter->current()[iter->current().size()-1] == t){
-                //prob = prob + space[j].prob();
                   prob = prob + iter->prob();
-                   // std::cout << "BCOMPARE " << prob <<" " << iter->prob()   <<std::endl;
                 }
             }
 
@@ -161,7 +152,6 @@ Ukrank::Answer Ukrank::ukrank(const Launch &engine, const Launch::Source &source
             bool __flag = false;
             
             iter2 = space.begin();
-            //std::advance(iter2, _size);
             
             for(auto iter = iter2; iter!= space.end();iter++){ 
                   
@@ -172,17 +162,13 @@ Ukrank::Answer Ukrank::ukrank(const Launch &engine, const Launch::Source &source
             }
 
             if(__flag) ubounds[i-1] = ub;
-            //std::cout <<"BOUND " << ubounds[i-1] << std::endl; 
             if(rflag[i-1] == true) continue;
            
-            //std::cout << "COMPARE " << prob  << " " << ap[i-1] << std::endl;
 
             if(prob >= ap[i-1]){
-                //std::cout << "ANSWER " << i << " " << t << " " << prob << std::endl;
                 answer[i-1] = t;
                 ap[i-1] = prob;
                 if(ap[i-1] > ubounds[i-1]){
-                    //std::cout << "UBOUNDS " << i << std::endl;  
                     rflag[i-1] = true;
                     reported += 1;
 
@@ -191,12 +177,6 @@ Ukrank::Answer Ukrank::ukrank(const Launch &engine, const Launch::Source &source
 
         }
         depth = depth + 1;
-   //     auto iter = space.begin();
-   //     auto iter2 = space.begin();
-   //     std::advance(iter2, _size);
-   //     space.erase(iter, iter2);
-       // std::cout << "AFTER " << space.size() << " " << _size<< std::endl;
-   //     std::cout <<"Erase " <<  count1<<std::endl;
     }
     depth = depth - 1;
     return answer;

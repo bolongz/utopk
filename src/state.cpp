@@ -61,15 +61,6 @@ State &State::operator=(State &&state){
     
     return *this;
 }
-//State::State(const State::Current &cu, const State::Prob &_p, const State::Length &_l){
-//    _current = cu;
-//    _prob = _p;
-//    _length = _l;
-//}
-
-//void State::extend(const Length &e, const Last &l){
-    //keep length extension }
-//void extend_length(const Sta &s, const Length &e, const Last &l); // extension length
 
 State::~State(){
     

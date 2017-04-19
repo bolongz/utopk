@@ -81,7 +81,6 @@ void Launch::start(const Launch::Rules & R, const Launch::Source &S){
     
     _source = S;
     _size = S.size();
-//    std::cout << _size << std::endl;
     /* get union for all the rules */
     Iterator it;
     for(size_t i = 0; i  < R.size() ; i++){
@@ -97,45 +96,36 @@ void Launch::start(const Launch::Rules & R, const Launch::Source &S){
 Launch::Prob Launch::computing_state_probability(const State &s) const{
    
     /* Length with prob 0 */
-    //if(s.length() == 0) return 1.0;
 
     long long int current = 0;;
     bool flag = true;
     double prob = 1.0, sum = 0.0;
     for(size_t i = 0; i < s.current().size();i++){
         current = current | 1 << s.current()[i];
-//        std::cout << "SCURRENT " << s.current()[i] <<" " << current ;
     }
-//    std::cout << std::endl << "SIZE " << _size << " " << _rules.size() <<  std::endl;
-    //for(int sub = 0; sub < 1 << _size; sub++){
     for(long long int sub = 0; sub < 1 << _size; sub++){
         flag = true; 
         /* check the rules */
         for(size_t i = 0 ; i < _rules.size(); i++){
             
             int inter = sub & _rules[i]; // intersection of two set 
-//            std::cout <<"RULE " << inter <<" " << _rules[i] <<std::endl;
             if( inter == 0 || (inter & (inter - 1)) != 0){
                 flag = false; 
                 break;
             }
         }
         if(flag){
-            //std::cout << "SUB " << sub  <<" " << current << std::endl;
             int _sub = sub;
             int inter = _sub & current;
             if( inter == current && current != 0){
                 bool contain = false;
                 for(size_t i = 0; i < s.negative().size(); i++){
-//                    std::cout << "NEGATIVE " << s.negative()[i] << std::endl;
                     if(_sub >> s.negative()[i] & 1){
                         contain = true;
                         break;
-                        //_sub = _sub &~(1 << s.negative()[i]);
                     }
                 }
                 if(contain) continue;
-//                std::cout << "INSIDE " << inter  << " " << sub << std::endl;
 
                 int count = 0;
            
@@ -156,15 +146,12 @@ Launch::Prob Launch::computing_state_probability(const State &s) const{
                             prob = prob * (1.0 - _source[count].confidence());
                         }
                     }
-//                    std::cout << "prob " << prob << " " << _sub << std::endl;
                     count = count + 1;
                     _sub = _sub >> 1;
 
                 }
-//                std::cout << "PROB FIRST " << prob << std::endl;
             }else if(current == 0){
                 
-//                std::cout << "CURRENT is zero " << current << " " << sub <<std::endl;
                 
                 if(sub == 0 && _rules.size() == 0){
                     
@@ -214,13 +201,11 @@ Launch::Prob Launch::computing_state_probability(const State &s) const{
             }
             if(fabs(prob - 1.0) < 0.000001) continue;
             sum = sum +  prob;
-//            std::cout << "SUM acc " << sum <<" " << prob << std::endl; 
             prob = 1.0;
 
         } 
     
     }
- //   std::cout << "PROB : " << sum << std::endl;
     return sum;
 
 }
