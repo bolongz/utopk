@@ -19,7 +19,7 @@ int main(int argc, char *argv[]){
         
         std::cout << "Run syntax:" << std::endl;
         std::cout << "topk <type> <k> <source> <rule> " << std::endl;
-        std::cout << "For indenpent processing, we do not have rule file" << std::endl;
+        std::cout << "For independent processing, we do not have rule file" << std::endl;
         
         exit(1);
     
