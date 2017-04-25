@@ -20,6 +20,7 @@ public:
 
 private:
     wxTextCtrl *tc1;
+    wxTextCtrl *tc2;
     wxRadioButton *rb1;
     wxRadioButton *rb2;
 

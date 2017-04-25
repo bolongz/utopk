@@ -28,14 +28,26 @@ Query::Query(const wxString& title)
 
     wxBoxSizer *hbox1 = new wxBoxSizer(wxHORIZONTAL);
     wxStaticText *st1 =  new wxStaticText(panel, wxID_ANY,
-        wxT("k value: "));
+        wxT("           k value: "));
 
-    hbox1->Add(st1, 0, wxRIGHT, 62);
+    hbox1->Add(st1, 0, wxRIGHT, 92);
     tc1 = new wxTextCtrl(panel, wxID_ANY);
     hbox1->Add(tc1, 1);
     vbox->Add(hbox1, 0, wxLEFT | wxTOP, 10);
 
     vbox->Add(-1, 25);
+
+    wxBoxSizer *hbox4 = new wxBoxSizer(wxHORIZONTAL);
+    wxStaticText *st4 = new wxStaticText(panel, wxID_ANY,
+                wxT("Rule file(for depedent dataset): "));
+
+    hbox4->Add(st4, 0, wxRIGHT, 10);
+    tc2 = new wxTextCtrl(panel, wxID_ANY);
+    hbox4->Add(tc2, 1);
+    vbox->Add(hbox4, 0, wxLEFT | wxTOP, 10);
+
+    vbox->Add(-1, 25);
+
 
     wxBoxSizer *hbox2 = new wxBoxSizer(wxHORIZONTAL);
     rb1 = new wxRadioButton(panel, -1,
@@ -67,6 +79,8 @@ Query::Query(const wxString& title)
 
 void Query::OnOk(wxCommandEvent& WXUNUSED(event)){
 	wxString k_str = tc1->GetValue();
+	wxString rule_filename = tc2->GetValue();
+	std::string ru_filename = std::string(rule_filename.mb_str());
 
 	long k_value;
 	k_str.ToLong(&k_value);
@@ -76,6 +90,24 @@ void Query::OnOk(wxCommandEvent& WXUNUSED(event)){
 	Caller caller;
 	double process_time;
 	int process_depth;
+	std::string line;
+
+	if(independent == 0) {
+	        std::ifstream ru(ru_filename.c_str(), std::ios::in);
+
+	        while(getline(ru, line)){
+
+	            std::set<int> s;
+	            std::istringstream iss(line);
+	            int a;
+	            while(iss >>a) {
+	                s.insert(a);
+	            }
+
+	            r.push_back(s);
+	        }
+	        ru.close();
+	    }
 
 	Db db;
 	if (!db.get_score_ranked_data(ranked_dataset)){
