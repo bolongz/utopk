@@ -10,5 +10,6 @@
 10. Excute "make utopk.x"
 11. Type in "./utopk.x" and run.
 12. Follow the instructions in the Section 5.3("presentation layer") of our final report.
-13. When the data is dependent situation, we need to load the rules for the
+13. When the data is dependent situation, we need to load the rule file (input
+the file name) for the
 tuples. (several possible rules has already list on the directory)
